@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block title %}
+ Sign In
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="card border-warning">
+                <div class="card-header bg-transparent border-warning">
+                    <h4 class="text-center text-uppercase pt-2">
+                        {% if request.GET.next != '/customer/' %}
+                            <b> Courier </b> 
+                        {% else %}
+                            <b> Customer </b> 
+                        {% endif %}
+                     </h4>
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST" class="form">
+                        {% csrf_token %}
+                        {% bootstrap_form_errors form %}
+                        {% bootstrap_label "Email:" %}
+                        {% bootstrap_field form.username show_label=False placeholder="Enter your email" %}
+                        {% bootstrap_label "Password:" %}
+                        {% bootstrap_field form.password show_label=False placeholder="Enter your password" %}
+                        <div class="d-grid gap-2 pt-2">
+                            <button type="submit" class="btn btn-warning"> Sign In </button>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <span> New to Fast Parcel? </span>
+                            <a class="btn-link" href="/sign-up/"> Sign Up </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{{ form }}
